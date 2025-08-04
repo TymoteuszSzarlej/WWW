@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RavaDev - Projekt Systemu Informatycznego</title>
+    <style>
+        :root {
+            --primary-color: #222;
+            --secondary-color: #40e0d0; /* turkusowy */
+            --accent-color: #ff00ff; /* magenta */
+            --text-color: #fff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #333);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        h4 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        
+        h5 {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+        
+        section {
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        div {
+            margin-bottom: 1.5rem;
+        }
+        
+        p {
+            margin: 0.5rem 0;
+        }
+        
+        span {
+            display: block;
+            margin-left: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #333, var(--primary-color));
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 3px solid var(--accent-color);
+        }
+        
+        .logo {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span class="logo">RavaDev</span> - Projekt Systemu Informatycznego</h1>
+    </header>
+
+    <section>
+        <h2>Etapy projektowania systemu informatycznego</h2>
+        
+        <div>
+            <h3>Analiza wymagań</h3>
+            <p><h4>Rozpoznanie potrzeb klienta</h4>
+                <span><h5>Przeprowadzenie wywiadów z właścicielem RavaDev</h5></span>
+                <span><h5>Analiza konkurencyjnych rozwiązań w branży</h5></span>
+                <span><h5>Określenie głównych funkcjonalności strony</h5></span>
+                <span><h5>Zdefiniowanie grup docelowych</h5></span>
+                <span><h5>Ustalenie wymagań dotyczących integracji z Tacc Accountancy</h5></span>
+            </p>
+            <p><h4>Dokumentacja wymagań</h4>
+                <span><h5>Przygotowanie listy wymagań funkcjonalnych</h5></span>
+                <span><h5>Określenie wymagań niefunkcjonalnych</h5></span>
+                <span><h5>Opis procesów biznesowych firmy</h5></span>
+                <span><h5>Analiza obecnych rozwiązań (jeśli istnieją)</h5></span>
+                <span><h5>Priorytetyzacja funkcji</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Projektowanie systemu</h3>
+            <p><h4>Architektura strony</h4>
+                <span><h5>Projekt struktury nawigacyjnej</h5></span>
+                <span><h5>Określenie modułów strony (usługi, portfolio, blog, itp.)</h5></span>
+                <span><h5>Plan integracji z systemem subskrypcji</h5></span>
+                <span><h5>Projekt API do komunikacji z Tacc Accountancy</h5></span>
+                <span><h5>Schemat bazy danych dla formularzy kontaktowych</h5></span>
+            </p>
+            <p><h4>Design UI/UX</h4>
+                <span><h5>Tworzenie wireframe'ów strony</h5></span>
+                <span><h5>Projekt interfejsu użytkownika</h5></span>
+                <span><h5>Dobór kolorystyki zgodnej z brandingiem</h5></span>
+                <span><h5>Optymalizacja ścieżek użytkownika</h5></span>
+                <span><h5>Projekt responsywny dla różnych urządzeń</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Implementacja</h3>
+            <p><h4>Rozwój frontendu</h4>
+                <span><h5>Kodowanie szablonów HTML/CSS</h5></span>
+                <span><h5>Implementacja JavaScript dla interaktywnych elementów</h5></span>
+                <span><h5>Integracja z systemem zarządzania treścią</h5></span>
+                <span><h5>Optymalizacja pod kątem SEO</h5></span>
+                <span><h5>Testy przeglądarkowe i responsywności</h5></span>
+            </p>
+            <p><h4>Rozwój backendu</h4>
+                <span><h5>Konfiguracja środowiska serwerowego</h5></span>
+                <span><h5>Implementacja formularzy kontaktowych</h5></span>
+                <span><h5>Integracja z systemem płatności dla subskrypcji</h5></span>
+                <span><h5>Budowa panelu administracyjnego</h5></span>
+                <span><h5>Implementacja zabezpieczeń</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Testy i walidacja</h3>
+            <p><h4>Testy funkcjonalne</h4>
+                <span><h5>Testy wszystkich linków i przycisków</h5></span>
+                <span><h5>Weryfikacja formularzy kontaktowych</h5></span>
+                <span><h5>Testy procesu subskrypcji</h5></span>
+                <span><h5>Walidacja HTML/CSS</h5></span>
+                <span><h5>Testy zgodności z różnymi przeglądarkami</h5></span>
+            </p>
+            <p><h4>Testy wydajnościowe</h4>
+                <span><h5>Pomiar czasu ładowania strony</h5></span>
+                <span><h5>Testy obciążeniowe</h5></span>
+                <span><h5>Optymalizacja obrazów i zasobów</h5></span>
+                <span><h5>Testy responsywności na różnych urządzeniach</h5></span>
+                <span><h5>Analiza SEO</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Wdrożenie</h3>
+            <p><h4>Przygotowanie do wdrożenia</h4>
+                <span><h5>Zakup i konfiguracja domeny</h5></span>
+                <span><h5>Wybór i konfiguracja hostingu</h5></span>
+                <span><h5>Migracja danych (jeśli dotyczy)</h5></span>
+                <span><h5>Konfiguracja SSL</h5></span>
+                <span><h5>Utworzenie kopii zapasowej</h5></span>
+            </p>
+            <p><h4>Wdrożenie produkcyjne</h4>
+                <span><h5>Wgranie plików na serwer</h5></span>
+                <span><h5>Konfiguracja bazy danych</h5></span>
+                <span><h5>Testy na środowisku produkcyjnym</h5></span>
+                <span><h5>Monitorowanie wydajności po wdrożeniu</h5></span>
+                <span><h5>Implementacja narzędzi analitycznych (Google Analytics)</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Utrzymanie i rozwój</h3>
+            <p><h4>Plan utrzymania</h4>
+                <span><h5>Harmonogram aktualizacji bezpieczeństwa</h5></span>
+                <span><h5>Procedury backupu danych</h5></span>
+                <span><h5>Monitoring uptime strony</h5></span>
+                <span><h5>Plan reagowania na awarie</h5></span>
+                <span><h5>System zgłaszania błędów</h5></span>
+            </p>
+            <p><h4>Plan rozwoju</h4>
+                <span><h5>Dodawanie nowych usług do oferty</h5></span>
+                <span><h5>Rozbudowa funkcjonalności Tacc Accountancy</h5></span>
+                <span><h5>Integracja z dodatkowymi kanałami sprzedaży</h5></span>
+                <span><h5>Optymalizacja konwersji</h5></span>
+                <span><h5>Rozwój strategii content marketingowej</h5></span>
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projekt systemu informatycznego</h2>
+        
+        <div>
+            <h3>Opis ogólny</h3>
+            <p><h4>Cel systemu</h4>
+                <span><h5>Prezentacja usług IT oferowanych przez RavaDev</h5></span>
+                <span><h5>Generowanie leadów poprzez formularze kontaktowe</h5></span>
+                <span><h5>Promocja i sprzedaż subskrypcji Tacc Accountancy</h5></span>
+                <span><h5>Budowa wizerunku eksperta w dziedzinie IT</h5></span>
+                <span><h5>Zapewnienie informacji dla potencjalnych klientów</h5></span>
+            </p>
+            <p><h4>Zakres projektu</h4>
+                <span><h5>Strona główna z podsumowaniem usług</h5></span>
+                <span><h5>Sekcje szczegółowe dla każdej usługi</h5></span>
+                <span><h5>Strona produktu Tacc Accountancy z formularzem subskrypcji</h5></span>
+                <span><h5>Blog z poradami IT</h5></span>
+                <span><h5>Strona kontaktowa z formularzem i danymi firmy</h5></span>
+            </p>
+            <p><h4>Grupy docelowe</h4>
+                <span><h5>Małe i średnie firmy potrzebujące usług IT</h5></span>
+                <span><h5>Freelancerzy i osoby prowadzące działalność nierejestrowaną</h5></span>
+                <span><h5>Osoby poszukujące narzędzi do rachunkowości osobistej</h5></span>
+                <span><h5>Firmy potrzebujące outsourcingu IT</h5></span>
+                <span><h5>Klienci potrzebujący wsparcia w cyberbezpieczeństwie</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Dokumentacja wymagań</h3>
+            <p><h4>Wymagania funkcjonalne</h4>
+                <span><h5>System zarządzania treścią (CMS)</h5></span>
+                <span><h5>Formularze kontaktowe z powiadomieniami</h5></span>
+                <span><h5>System subskrypcji Tacc Accountancy</h5></span>
+                <span><h5>Integracja z płatnościami online</h5></span>
+                <span><h5>Panel administracyjny do zarządzania treścią</h5></span>
+            </p>
+            <p><h4>Wymagania niefunkcjonalne</h4>
+                <span><h5>Ładowanie strony w czasie poniżej 2 sekund</h5></span>
+                <span><h5>Responsywność na wszystkich urządzeniach</h5></span>
+                <span><h5>Certyfikat SSL dla bezpieczeństwa danych</h5></span>
+                <span><h5>Zgodność z RODO w zakresie przetwarzania danych</h5></span>
+                <span><h5>Dostępność 99,9% czasu</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Architektura systemu</h3>
+            <p><h4>Diagramy architektoniczne</h4>
+                <span><h5>Diagram przepływu danych użytkownika</h5></span>
+                <span><h5>Schemat struktury strony</h5></span>
+                <span><h5>Diagram integracji z systemem płatności</h5></span>
+                <span><h5>Architektura technologiczna</h5></span>
+                <span><h5>Model bezpieczeństwa danych</h5></span>
+            </p>
+            <p><h4>Opis środowiska technicznego</h4>
+                <span><h5>Hosting VPS z możliwością skalowania</h5></span>
+                <span><h5>Baza danych MySQL</h5></span>
+                <span><h5>Środowisko PHP 8.x</h5></span>
+                <span><h5>Framework frontendowy (np. Bootstrap)</h5></span>
+                <span><h5>System kontroli wersji Git</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Model bazy danych</h3>
+            <p><h4>Diagram ERD</h4>
+                <span><h5>Tabela użytkowników</h5></span>
+                <span><h5>Tabela subskrypcji</h5></span>
+                <span><h5>Tabela formularzy kontaktowych</h5></span>
+                <span><h5>Tabela wpisów blogowych</h5></span>
+                <span><h5>Tabela usług</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Projekt UI/UX</h3>
+            <p><h4>Mockupy lub prototypy interfejsu użytkownika</h4>
+                <span><h5>Projekt strony głównej z call-to-action</h5></span>
+                <span><h5>Mockup sekcji usług</h5></span>
+                <span><h5>Projekt strony produktu Tacc Accountancy</h5></span>
+                <span><h5>Prototyp formularza kontaktowego</h5></span>
+                <span><h5>Wizualizacja responsywności</h5></span>
+            </p>
+            <p><h4>Wytyczne dotyczące wyglądu i nawigacji</h4>
+                <span><h5>Spójna kolorystyka z brandingiem firmy</h5></span>
+                <span><h5>Intuicyjna nawigacja z wyraźnym menu</h5></span>
+                <span><h5>Minimalistyczny design skupiony na treści</h5></span>
+                <span><h5>Przyciski call-to-action w kontrastowych kolorach</h5></span>
+                <span><h5>Spójne style typograficzne</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Opis technologii</h3>
+            <p><h4>Użyte technologie i narzędzia</h4>
+                <span><h5>HTML5, CSS3, JavaScript (frontend)</h5></span>
+                <span><h5>PHP (backend)</h5></span>
+                <span><h5>MySQL (baza danych)</h5></span>
+                <span><h5>Bootstrap (framework responsywny)</h5></span>
+                <span><h5>WordPress (system zarządzania treścią)</h5></span>
+            </p>
+            <p><h4>Powody ich wyboru</h4>
+                <span><h5>Niskie koszty wdrożenia i utrzymania</h5></span>
+                <span><h5>Łatwość modyfikacji przez klienta</h5></span>
+                <span><h5>Dobre wsparcie społeczności</h5></span>
+                <span><h5>Skalowalność rozwiązania</h5></span>
+                <span><h5>Kompatybilność z wymaganiami projektu</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Plan wdrożenia</h3>
+            <p><h4>Harmonogram wdrożenia</h4>
+                <span><h5>Tydzień 1: Przygotowanie środowiska</h5></span>
+                <span><h5>Tydzień 2-3: Implementacja podstawowych funkcji</h5></span>
+                <span><h5>Tydzień 4: Testy wewnętrzne</h5></span>
+                <span><h5>Tydzień 5: Poprawki i optymalizacje</h5></span>
+                <span><h5>Tydzień 6: Wdrożenie na produkcję</h5></span>
+            </p>
+            <p><h4>Testy przedprodukcyjne</h4>
+                <span><h5>Testy funkcjonalne wszystkich modułów</h5></span>
+                <span><h5>Testy bezpieczeństwa formularzy</h5></span>
+                <span><h5>Weryfikacja procesu płatności</h5></span>
+                <span><h5>Testy wydajnościowe</h5></span>
+                <span><h5>Testy użyteczności z udziałem użytkowników</h5></span>
+            </p>
+            <p><h4>Szkolenia użytkowników</h4>
+                <span><h5>Szkolenie z obsługi panelu administracyjnego</h5></span>
+                <span><h5>Instrukcja dodawania nowych usług</h5></span>
+                <span><h5>Szkolenie z zarządzania subskrypcjami</h5></span>
+                <span><h5>Obsługa formularzy kontaktowych</h5></span>
+                <span><h5>Zasady aktualizacji treści</h5></span>
+            </p>
+        </div>
+        
+        <div>
+            <h3>Plan utrzymania</h3>
+            <p><h4>Strategie backupu i odzyskiwania danych</h4>
+                <span><h5>Codzienne backup bazy danych</h5></span>
+                <span><h5>Cotygodniowe backup plików</h5></span>
+                <span><h5>Przechowywanie backupów poza serwerem</h5></span>
+                <span><h5>Procedura odtwarzania po awarii</h5></span>
+                <span><h5>Monitoring bezpieczeństwa</h5></span>
+            </p>
+            <p><h4>Harmonogram aktualizacji</h4>
+                <span><h5>Miesięczne aktualizacje bezpieczeństwa</h5></span>
+                <span><h5>Kwartalne przeglądy funkcjonalności</h5></span>
+                <span><h5>Półroczna optymalizacja wydajności</h5></span>
+                <span><h5>Roczny audyt SEO</h5></span>
+                <span><h5>Elastyczne aktualizacje w odpowiedzi na zmiany</h5></span>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Projekt strony WWW dla <span class="highlight">RavaDev</span> | Wersja 1.0 | Data: <span id="current-date"></span></p>
+    </footer>
+
+    <script>
+        // Skrypt do wyświetlania aktualnej daty
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('pl-PL');
+        
+        // Prosta animacja dla nagłówków sekcji
+        document.querySelectorAll('h2').forEach(header => {
+            header.addEventListener('mouseover', function() {
+                this.style.transition = 'color 0.3s ease';
+                this.style.color = 'var(--accent-color)';
+            });
+            
+            header.addEventListener('mouseout', function() {
+                this.style.color = 'var(--secondary-color)';
+            });
+        });
+    </script>
+</body>
+</html>

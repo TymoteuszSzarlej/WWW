@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RavaDev - Dokumentacja Techniczna</title>
+    <style>
+        :root {
+            --bg-color: #222;
+            --text-color: #fff;
+            --primary-accent: #40e0d0; /* turkus */
+            --secondary-accent: #ff00ff; /* magenta */
+            --dark-accent: #1a1a1a;
+            --light-accent: #333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark-accent), var(--bg-color));
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-accent);
+        }
+        
+        h1 {
+            color: var(--primary-accent);
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(64, 224, 208, 0.3);
+        }
+        
+        h2 {
+            color: var(--primary-accent);
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-accent);
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30%;
+            height: 2px;
+            background: var(--primary-accent);
+        }
+        
+        h3 {
+            color: var(--secondary-accent);
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        h3:hover {
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+        }
+        
+        h4 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            border-left: 3px solid var(--primary-accent);
+            padding-left: 10px;
+        }
+        
+        h5 {
+            color: var(--primary-accent);
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+        
+        section {
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .backend, .frontend {
+            background-color: var(--dark-accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .backend:hover, .frontend:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        div {
+            margin-bottom: 1.5rem;
+        }
+        
+        p {
+            margin: 0.5rem 0;
+        }
+        
+        span {
+            display: block;
+            margin-left: 1rem;
+            margin-bottom: 0.3rem;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        span::before {
+            content: '•';
+            color: var(--secondary-accent);
+            position: absolute;
+            left: 0;
+        }
+        
+        code {
+            display: block;
+            background-color: var(--light-accent);
+            padding: 12px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            border-left: 3px solid var(--primary-accent);
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #111;
+            padding: 5px 10px;
+            border-radius: 5px 5px 0 0;
+            font-size: 0.9rem;
+            color: var(--primary-accent);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-accent), var(--bg-color));
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 3px solid var(--secondary-accent);
+        }
+        
+        .highlight {
+            color: var(--primary-accent);
+            font-weight: bold;
+        }
+        
+        /* Animacje */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        section div {
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        section div:nth-child(1) { animation-delay: 0.1s; }
+        section div:nth-child(2) { animation-delay: 0.2s; }
+        section div:nth-child(3) { animation-delay: 0.3s; }
+        section div:nth-child(4) { animation-delay: 0.4s; }
+        section div:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header class="pulse">
+        <h1>RavaDev - Dokumentacja Techniczna</h1>
+        <p>Django + Jinja2 + CSS + JavaScript</p>
+    </header>
+
+    <section>
+        <h2>Backend (Django)</h2>
+        
+        <div class="backend">
+            <h3>Modele</h3>
+            <p><h4>Główne modele danych</h4>
+                <span><h5>Service - model usług IT (Outsourcing, Tworzenie oprogramowania itp.)</h5></span>
+                <span><h5>Subscription - model subskrypcji Tacc Accountancy</h5></span>
+                <span><h5>BlogPost - model wpisów na bloga</h5></span>
+                <span><h5>ContactRequest - model formularza kontaktowego</h5></span>
+                <span><h5>UserProfile - rozszerzenie modelu użytkownika</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>models.py</span>
+                <span>Przykładowy model</span>
+            </div>
+            <code>
+from django.db import models
+from django.contrib.auth.models import User
+
+class Service(models.Model):
+    SERVICE_TYPES = [
+        ('OUT', 'Outsourcing IT'),
+        ('DEV', 'Tworzenie oprogramowania'),
+        ('ERP', 'Integracja ERP/CRM/BI'),
+        # ... inne usługi
+    ]
+    
+    title = models.CharField(max_length=100)
+    service_type = models.CharField(max_length=3, choices=SERVICE_TYPES)
+    description = models.TextField()
+    icon = models.CharField(max_length=30)  # Nazwa ikony z FontAwesome
+    is_featured = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.title
+            </code>
+        </div>
+        
+        <div class="backend">
+            <h3>Formularze</h3>
+            <p><h4>Formularze Django</h4>
+                <span><h5>ContactForm - formularz kontaktowy z walidacją</h5></span>
+                <span><h5>SubscriptionForm - formularz subskrypcji</h5></span>
+                <span><h5>NewsletterForm - zapis do newslettera</h5></span>
+                <span><h5>UserRegistrationForm - rejestracja użytkownika</h5></span>
+                <span><h5>CustomAuthenticationForm - logowanie</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>forms.py</span>
+                <span>Przykładowy formularz</span>
+            </div>
+            <code>
+from django import forms
+from .models import ContactRequest
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactRequest
+        fields = ['name', 'email', 'phone', 'service', 'message']
+        widgets = {
+            'service': forms.Select(attrs={'class': 'form-control'}),
+            'message': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
+        }
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        # Własna logika walidacji
+        return email
+            </code>
+        </div>
+        
+        <div class="backend">
+            <h3>Widoki</h3>
+            <p><h4>Klasy widoków</h4>
+                <span><h5>HomeView - strona główna z listą usług</h5></span>
+                <span><h5>ServiceDetailView - szczegóły usługi</h5></span>
+                <span><h5>SubscriptionView - strona subskrypcji</h5></span>
+                <span><h5>BlogListView - lista wpisów blogowych</h5></span>
+                <span><h5>ContactView - formularz kontaktowy</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>views.py</span>
+                <span>Przykładowy widok</span>
+            </div>
+            <code>
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormView
+from .models import Service, BlogPost
+from .forms import ContactForm
+
+class HomeView(ListView):
+    model = Service
+    template_name = 'home.html'
+    context_object_name = 'services'
+    
+    def get_queryset(self):
+        return Service.objects.filter(is_featured=True)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['featured_posts'] = BlogPost.objects.filter(is_featured=True)[:3]
+        return context
+
+class ServiceDetailView(DetailView):
+    model = Service
+    template_name = 'services/detail.html'
+    context_object_name = 'service'
+            </code>
+        </div>
+        
+        <div class="backend">
+            <h3>URLs</h3>
+            <p><h4>Konfiguracja ścieżek</h4>
+                <span><h5>Główne ścieżki w urls.py projektu</h5></span>
+                <span><h5>Namespace 'services' dla usług</h5></span>
+                <span><h5>Namespace 'blog' dla wpisów</h5></span>
+                <span><h5>Namespace 'account' dla subskrypcji</h5></span>
+                <span><h5>Ścieżki API dla przyszłych rozszerzeń</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>urls.py</span>
+                <span>Przykładowa konfiguracja</span>
+            </div>
+            <code>
+from django.urls import path
+from .views import HomeView, ServiceDetailView, ContactView, SubscriptionView
+
+urlpatterns = [
+    path('', HomeView.as_view(), name='home'),
+    path('services/&lt;slug:slug&gt;/', ServiceDetailView.as_view(), name='service-detail'),
+    path('contact/', ContactView.as_view(), name='contact'),
+    path('subscription/', SubscriptionView.as_view(), name='subscription'),
+    # ... inne ścieżki
+]
+            </code>
+        </div>
+        
+        <div class="backend">
+            <h3>Szablony (Jinja2)</h3>
+            <p><h4>Struktura szablonów</h4>
+                <span><h5>base.html - główny szablon z blokami</h5></span>
+                <span><h5>partials/ - częściowe szablony (header, footer itp.)</h5></span>
+                <span><h5>services/ - szablony usług</h5></span>
+                <span><h5>account/ - szablony subskrypcji</h5></span>
+                <span><h5>Wykorzystanie dziedziczenia szablonów</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>templates/base.html</span>
+                <span>Główny szablon</span>
+            </div>
+            <code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;{% block title %}RavaDev{% endblock %}&lt;/title&gt;
+    {% block styles %}{% endblock %}
+&lt;/head&gt;
+&lt;body&gt;
+    {% include 'partials/header.html' %}
+    
+    &lt;main&gt;
+        {% block content %}
+        {% endblock %}
+    &lt;/main&gt;
+    
+    {% include 'partials/footer.html' %}
+    
+    {% block scripts %}{% endblock %}
+&lt;/body&gt;
+&lt;/html&gt;
+            </code>
+        </div>
+    </section>
+
+    <section>
+        <h2>Frontend</h2>
+        
+        <div class="frontend">
+            <h3>UI/UX</h3>
+            <p><h4>Zasady projektowania interfejsu</h4>
+                <span><h5>Spójna kolorystyka (turkus + magenta na ciemnym tle)</h5></span>
+                <span><h5>Minimalistyczny design z focusem na treść</h5></span>
+                <span><h5>Intuicyjna nawigacja z wyraźnymi CTA</h5></span>
+                <span><h5>Responsywność na wszystkie urządzenia</h5></span>
+                <span><h5>Dostępność (a11y) - kontrast, ARIA, klawiatura</h5></span>
+            </p>
+            
+            <p><h4>Elementy UI</h4>
+                <span><h5>Przyciski z gradientem turkus-magenta</h5></span>
+                <span><h5>Karty usług z efektem hover</h5></span>
+                <span><h5>Animowane przejścia między sekcjami</h5></span>
+                <span><h5>Modale dla formularzy</h5></span>
+                <span><h5>Progress bar dla procesu subskrypcji</h5></span>
+            </p>
+        </div>
+        
+        <div class="frontend">
+            <h3>Przyjazne rozmieszczenie treści</h3>
+            <p><h4>Hierarchia informacji</h4>
+                <span><h5>Nagłówek z głównym CTA na pierwszym ekranie</h5></span>
+                <span><h5>Sekcja usług z ikonami i krótkimi opisami</h5></span>
+                <span><h5>Wyróżnione case studies/portfolio</h5></span>
+                <span><h5>Sekcja subskrypcji Tacc Accountancy</h5></span>
+                <span><h5>Blog z poradami IT</h5></span>
+            </p>
+            
+            <p><h4>Optymalizacja konwersji</h4>
+                <span><h5>Formularze kontaktowe w strategicznych miejscach</h5></span>
+                <span><h5>Przyciski CTA w kontrastowych kolorach</h5></span>
+                <span><h5>Social proof - opinie klientów</h5></span>
+                <span><h5>Liczniki statystyk (projekty, klienci itp.)</h5></span>
+                <span><h5>Chatbot do szybkiego kontaktu</h5></span>
+            </p>
+        </div>
+        
+        <div class="frontend">
+            <h3>HTML + Jinja2</h3>
+            <p><h4>Struktura dokumentów</h4>
+                <span><h5>Semantyczny HTML5</h5></span>
+                <span><h5>Dziedziczenie szablonów</h5></span>
+                <span><h5>Dynamiczne generowanie treści</h5></span>
+                <span><h5>Pętle dla listy usług/blog posts</h5></span>
+                <span><h5>Warunkowe wyświetlanie elementów</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>templates/services/list.html</span>
+                <span>Przykładowy szablon</span>
+            </div>
+            <code>
+{% extends "base.html" %}
+
+{% block title %}Usługi | RavaDev{% endblock %}
+
+{% block content %}
+&lt;section class="services"&gt;
+    &lt;h1&gt;Nasze Usługi&lt;/h1&gt;
+    
+    &lt;div class="services-grid"&gt;
+        {% for service in services %}
+        &lt;div class="service-card"&gt;
+            &lt;i class="fas fa-{{ service.icon }}"&gt;&lt;/i&gt;
+            &lt;h3&gt;{{ service.title }}&lt;/h3&gt;
+            &lt;p&gt;{{ service.description|truncatechars:100 }}&lt;/p&gt;
+            &lt;a href="{% url 'service-detail' service.slug %}" class="btn"&gt;Więcej&lt;/a&gt;
+        &lt;/div&gt;
+        {% endfor %}
+    &lt;/div&gt;
+&lt;/section&gt;
+{% endblock %}
+            </code>
+        </div>
+        
+        <div class="frontend">
+            <h3>CSS</h3>
+            <p><h4>Stylizacja</h4>
+                <span><h5>Zmienne CSS dla spójnej kolorystyki</h5></span>
+                <span><h5>Flexbox/Grid dla układu strony</h5></span>
+                <span><h5>Media queries dla responsywności</h5></span>
+                <span><h5>Modern reset/normalize</h5></span>
+                <span><h5>Spójny system typograficzny</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>static/css/main.css</span>
+                <span>Przykładowe style</span>
+            </div>
+            <code>
+:root {
+    --bg-color: #222;
+    --text-color: #fff;
+    --primary-accent: #40e0d0;
+    --secondary-accent: #ff00ff;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(64, 224, 208, 0.1);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-accent);
+}
+
+.btn {
+    background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(64, 224, 208, 0.4);
+}
+            </code>
+        </div>
+        
+        <div class="frontend">
+            <h3>JavaScript</h3>
+            <p><h4>Interakcje</h4>
+                <span><h5>Animacje scrollowania</h5></span>
+                <span><h5>Obsługa formularzy AJAX</h5></span>
+                <span><h5>Dynamiczne ładowanie treści</h5></span>
+                <span><h5>Paralaksa w sekcjach wizytówkowych</h5></span>
+                <span><h5>Interaktywny proces subskrypcji</h5></span>
+            </p>
+            
+            <p><h4>Biblioteki</h4>
+                <span><h5>GSAP dla zaawansowanych animacji</h5></span>
+                <span><h5>Axios dla żądań HTTP</h5></span>
+                <span><h5>Algolia Search dla wyszukiwania</h5></span>
+                <span><h5>Chart.js dla statystyk</h5></span>
+                <span><h5>Cleave.js dla formatowania inputów</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>static/js/main.js</span>
+                <span>Przykładowy kod JS</span>
+            </div>
+            <code>
+// Animacja scrollowania
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Obsługa formularza kontaktowego
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        
+        try {
+            const response = await fetch('/api/contact/', {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                showNotification('Wiadomość wysłana pomyślnie!', 'success');
+                contactForm.reset();
+            } else {
+                throw new Error('Błąd podczas wysyłania');
+            }
+        } catch (error) {
+            showNotification('Wystąpił błąd. Spróbuj ponownie.', 'error');
+            console.error(error);
+        }
+    });
+}
+
+// Efekt paralaksy
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    
+    parallaxElements.forEach(element => {
+        const speed = parseFloat(element.dataset.parallax);
+        element.style.transform = `translateY(${scrollPosition * speed}px)`;
+    });
+});
+            </code>
+        </div>
+        
+        <div class="frontend">
+            <h3>Animacje</h3>
+            <p><h4>Efekty wizualne</h4>
+                <span><h5>Mikrointerakcje (hover, focus)</h5></span>
+                <span><h5>Animowane przejścia między stanami</h5></span>
+                <span><h5>Lazy loading z animacją pojawiania</h5></span>
+                <span><h5>Animated SVG dla ikon i ilustracji</h5></span>
+                <span><h5>Scroll-triggered animations</h5></span>
+            </p>
+            
+            <div class="code-header">
+                <span>Przykładowa animacja GSAP</span>
+            </div>
+            <code>
+gsap.registerPlugin(ScrollTrigger);
+
+// Animacja sekcji usług
+gsap.utils.toArray('.service-card').forEach((card, i) => {
+    gsap.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+            toggleActions: "play none none none"
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        delay: i * 0.1
+    });
+});
+
+// Animacja logo
+const logo = document.querySelector('.logo');
+gsap.to(logo, {
+    duration: 2,
+    rotate: 360,
+    repeat: -1,
+    ease: "power1.inOut",
+    yoyo: true
+});
+            </code>
+        </div>
+    </section>
+
+    <footer>
+        <p>Dokumentacja techniczna <span class="highlight">RavaDev</span> | Wersja 1.0 | Data: <span id="current-date"></span></p>
+    </footer>
+
+    <script>
+        // Aktualna data
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('pl-PL');
+        
+        // Efekt podświetlenia nagłówków
+        document.querySelectorAll('h3').forEach(header => {
+            header.addEventListener('mouseover', function() {
+                this.style.textShadow = '0 0 10px var(--secondary-accent)';
+            });
+            
+            header.addEventListener('mouseout', function() {
+                this.style.textShadow = 'none';
+            });
+        });
+        
+        // Animowane tło dla sekcji
+        document.querySelectorAll('.backend, .frontend').forEach(section => {
+            section.addEventListener('mousemove', (e) => {
+                const x = e.pageX - section.offsetLeft;
+                const y = e.pageY - section.offsetTop;
+                
+                section.style.setProperty('--mouse-x', `${x}px`);
+                section.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>
