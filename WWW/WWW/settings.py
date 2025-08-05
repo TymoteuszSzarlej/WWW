@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'services',
+    'subscriptions',
+    'blog',
+    'contact',
+    'users',
+    'index',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +60,7 @@ ROOT_URLCONF = 'WWW.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / '_templates'],  # Dodano folder szablonów
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
