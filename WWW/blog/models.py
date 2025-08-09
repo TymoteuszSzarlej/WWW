@@ -18,6 +18,8 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='blog_images/', blank=True)
+    view_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title

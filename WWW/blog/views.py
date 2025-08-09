@@ -11,6 +11,8 @@ def blog_index(request):
         if post:
             popular_posts.append(post)
     latest_posts = Post.objects.filter(published=True).order_by('-created')[:5]
+    popular_posts = Post.objects.filter(published=True).order_by('-view_count')[:5]
+    print(categories, popular_posts, latest_posts)  # Debugging line
     return render(request, 'blog/index.html', {
         'categories': categories,
         'popular_posts': popular_posts,

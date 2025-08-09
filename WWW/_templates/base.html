@@ -1033,6 +1033,14 @@ img {
 .nav-menu {
     backdrop-filter: blur(50px);
 }
+.nav-menu section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3%;
+    margin: 3%;
+    border: 2px solid rgba(64, 224, 208, 0.2);
+}
 
 
 /* section, div, span {
@@ -1098,18 +1106,45 @@ main span {
                 </button>
 
                 <section class="nav-menu">
-                    <div><a href="#services">Usługi</a></div>
-                    <div><a href="#subscriptions">Subskrypcje</a></div>
-                    <div><a href="#portfolio">Portfolio</a></div>
-                    <div><a href="#blog">Blog</a></div>
-                    <div><a href="#contact" class="btn btn-outline">Kontakt</a></div>
+                    <section>
+                      <div><a href="#services">Usługi</a></div>
+                      <div><a href="#subscriptions">Subskrypcje</a></div>
+                      <div><a href="#portfolio">Portfolio</a></div>
+                      <div><a href="#blog">Blog</a></div>
+                      <div><a href="#contact" class="btn btn-outline">Kontakt</a></div>
+                    </section>
                     {% if user.is_authenticated %}
-                        <div><a href="{% url 'settings' %}">Moje konto</a></div>
-                        <div><a href="">Wyloguj</a></div>
-                    {% else %}
-                        <div><a href="">Logowanie</a></div>
+                        <section>
+                          <div><a href="{% url 'settings' %}">Moje konto</a></div>
+                          <div><a href="{% url 'logout' %}
+  ">Wyloguj</a></div>
+                      {% else %}
+                          <div><a href="{% url 'login' %}">Logowanie</a></div>
+                          <div><a href="{% url 'register' %}">Rejestracja</a></div>
+                        </section>
                     {% endif %}
-                </ul>
+                    <section>
+                      <div>
+                        <a href="{% url 'index' %}">Strona Główna</a>
+                      </div>
+                      <div>
+                        <a href="{% url 'subscription_list' %}">Produkty</a>
+                      </div>
+                      <div>
+                        <a href="{% url 'service_list' %}">Usługi</a>
+                      </div>
+                      <div>
+                        <a href="{% url 'team_list' %}">Zespół</a>
+                      </div>
+                      <div>
+                        <a href="{% url 'start_conversation' %}">Kontakt</a>
+                      </div>
+                      <div>
+                        <a href="{% url 'blog_index' %}">Blog</a>
+                      </div>
+                    </section>
+                    
+                  </section>
             </div>
         </nav>
 
@@ -1127,7 +1162,7 @@ main span {
     <!-- Services Section -->
     <section id="services" class="section services">
         <div class="container">
-            <h2 class="section-title">Nasze <span>Usługi</span></h2>
+            <a href="{% url 'service_list' %}"><h2 class="section-title">Nasze <span>Usługi</span></h2></a>
             <p class="section-subtitle">Kompleksowe rozwiązania dla Twojego biznesu</p>
             
             <div class="services-grid">
@@ -1197,7 +1232,7 @@ main span {
     <!-- Subscriptions Section -->
     <section id="subscriptions" class="section subscriptions">
         <div class="container">
-            <h2 class="section-title">Subskrypcje <span>Tacc Accountancy</span></h2>
+            <a href="{% url 'subscription_list' %}"><h2 class="section-title">Subskrypcje <span>Tacc Accountancy</span></h2></a>
             <p class="section-subtitle">Kompleksowe rozwiązania księgowe dla Twojej firmy</p>
             
             <div class="pricing-grid">
@@ -1248,7 +1283,7 @@ main span {
     <!-- Blog Section -->
     <section id="blog" class="section blog">
         <div class="container">
-            <h2 class="section-title">Ostatnie <span>Wpisy</span></h2>
+            <a href="{% url 'blog_index' %}"><h2 class="section-title">Ostatnie <span>Wpisy</span></h2></a>
             <p class="section-subtitle">Poznaj nasze porady i analizy</p>
             
             <div class="blog-grid">

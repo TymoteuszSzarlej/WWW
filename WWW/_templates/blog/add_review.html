@@ -2,4 +2,10 @@
 
 {% block blog_content %}
 <!-- blog/add_review.html content -->
+<h2>Dodaj recenzję</h2>
+<form method="post" action="{% url 'add_review' post.id %}">
+    {% csrf_token %}
+    <textarea name="content" rows="4" required></textarea>
+    <button type="submit">Dodaj recenzję</button>   
+</form>
 {% endblock %}

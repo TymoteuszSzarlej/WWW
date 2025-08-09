@@ -2,4 +2,18 @@
 
 {% block blog_content %}
 <!-- blog/category_posts.html content -->
+ <h2>Kategoria "<strong>{{ category.name }}</strong>"</h2>
+ <p>{{ category.description }}</p>
+ <section>
+    {% for post in posts %}
+    <div>
+        <h4>{{ post.title }}</h4>
+        <p class="post-date">{{ post.created|date:"F j, Y" }}</p>
+        <p>{{ post.content|slice:":64" }}...</p>
+        <a href="{% url 'post_detail' post.id %}">Czytaj więcej</a>
+    </div>
+    {% empty %}
+    <p>Brak wpisów w tej kategorii.</p>
+    {% endfor %}
+ </section>
 {% endblock %}
