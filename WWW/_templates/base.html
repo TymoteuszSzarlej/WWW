@@ -1,39 +1,1335 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}RavaDev{% endblock %}</title>
+    <title>RavaDev | {%block title%}{%endblock%}</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <link rel="icon" href="{% static 'img/favicon.ico' %}">
-    <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
-    {% block head %}{% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ===== BASE & RESET ===== */
+:root {
+  --bg-dark: #222;
+  --bg-darker: #1a1a1a;
+  --text-light: #ffffff;
+  --text-muted: #aaaaaa;
+  --primary: #40e0d0;      /* Turquoise */
+  --primary-dark: #2dc4b6;
+  --secondary: #ff00ff;    /* Magenta */
+  --secondary-dark: #e000e0;
+  --accent-gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(64, 224, 208, 0.1);
+  --transition: all 0.3s ease;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  --radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-size: 1.4rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.section-title span {
+  color: var(--primary);
+  position: relative;
+}
+
+.section-title span::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-gradient);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-gradient);
+  z-index: -1;
+  transition: var(--transition);
+}
+
+.btn:hover::before {
+  filter: brightness(1.2);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary {
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline::before {
+  background: transparent;
+}
+
+.btn-outline:hover {
+  color: white;
+  border-color: transparent;
+}
+
+.btn-outline:hover::before {
+  background: var(--accent-gradient);
+}
+
+.btn-small {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.2rem 0;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  background: rgba(34, 34, 34, 0.8);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--text-light);
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--text-light);
+  margin: 5px 0;
+  transition: var(--transition);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 70px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(64,224,208,0.1) 0%, rgba(34,34,34,1) 70%);
+  z-index: -1;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.hero .lead {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-muted);
+}
+
+.cta-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* ===== SERVICE CARDS ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.service-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: var(--transition);
+  border: 1px solid var(--card-border);
+  text-align: center;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.service-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(64, 224, 208, 0.1);
+  border-radius: 50%;
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+.service-card h3 {
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about {
+  background: var(--bg-darker);
+}
+
+.about .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-content h2 {
+  margin-bottom: 1.5rem;
+}
+
+.about-image {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* ===== PORTFOLIO SECTION ===== */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.portfolio-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 300px;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.1);
+}
+
+.portfolio-overlay h3 {
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-overlay p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ===== SUBSCRIPTIONS SECTION ===== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pricing-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow);
+}
+
+.pricing-card.featured {
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: var(--accent-gradient);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.price {
+  margin: 1.5rem 0;
+}
+
+.amount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.period {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.features {
+  list-style: none;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.features li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+}
+
+.features li::before {
+  content: '✓';
+  color: var(--primary);
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-slider {
+  max-width: 800px;
+  margin: 3rem auto 0;
+}
+
+.testimonial-item {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid var(--card-border);
+}
+
+.testimonial-content {
+  font-style: italic;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  position: relative;
+}
+
+.testimonial-content::before,
+.testimonial-content::after {
+  content: '"';
+  font-size: 4rem;
+  color: var(--primary);
+  opacity: 0.2;
+  position: absolute;
+}
+
+.testimonial-content::before {
+  top: -20px;
+  left: -15px;
+}
+
+.testimonial-content::after {
+  bottom: -50px;
+  right: -15px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.testimonial-author img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  object-fit: cover;
+}
+
+.testimonial-author h4 {
+  margin-bottom: 0.2rem;
+}
+
+.testimonial-author span {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ===== BLOG SECTION ===== */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.blog-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+  border: 1px solid var(--card-border);
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow);
+}
+
+.blog-image {
+  height: 200px;
+  position: relative;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-category {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--primary);
+  color: var(--bg-dark);
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.blog-content {
+  padding: 1.5rem;
+}
+
+.blog-date {
+  color: var(--primary);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.blog-content h3 {
+  margin-bottom: 1rem;
+}
+
+.blog-content p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.read-more {
+  color: var(--primary);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.read-more i {
+  margin-left: 5px;
+  transition: var(--transition);
+}
+
+.read-more:hover i {
+  transform: translateX(5px);
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  color: var(--text-light);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(64, 224, 208, 0.2);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.info-item i {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-right: 1.5rem;
+  margin-top: 5px;
+}
+
+.info-item h3 {
+  margin-bottom: 0.5rem;
+}
+
+.info-item p, .info-item a {
+  color: var(--text-muted);
+}
+
+.info-item a:hover {
+  color: var(--primary);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--bg-darker);
+  padding: 4rem 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footer-col h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-col h3 span {
+  color: var(--primary);
+}
+
+.footer-col p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-col ul li a {
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.footer-col ul li a:hover {
+  color: var(--primary);
+  padding-left: 5px;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  color: var(--text-light);
+  transition: var(--transition);
+}
+
+.social-links a:hover {
+  background: var(--accent-gradient);
+  transform: translateY(-3px);
+}
+
+.newsletter-form {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.8rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 50px 0 0 50px;
+  color: var(--text-light);
+  font-family: inherit;
+}
+
+.newsletter-form button {
+  background: var(--primary);
+  color: var(--bg-dark);
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.newsletter-form button:hover {
+  background: var(--primary-dark);
+}
+
+.footer-bottom {
+  padding: 2rem 0;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 992px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.2rem; }
+  
+  .about .container,
+  .contact .container {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-image {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    flex-direction: column;
+    background: var(--bg-darker);
+    padding: 2rem;
+    transition: var(--transition);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-links.active {
+    left: 0;
+  }
+  
+  .hamburger {
+    display: block;
+  }
+  
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero .lead {
+    font-size: 1.2rem;
+  }
+  
+  .cta-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .pricing-card.featured {
+    transform: scale(1);
+  }
+  
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .footer-links {
+    justify-content: center;
+  }
+}
+
+
+
+.nav-menu li {
+    border: 2px solid turquoise;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    transition: background-color 0.3s ease;
+
+}
+
+.nav-menu li:hover {
+    background-color: rgba(64, 224, 208, 0.2); /* lekki turkus przy hoverze */
+}
+
+.nav-menu {
+    clip-path: polygon(
+        0% 0%, 
+        90% 0%, 
+        100% 10%, 
+        100% 100%, 
+        10% 100%, 
+        0% 90%
+    );
+    border: 5px solid turquoise;
+}
+
+
+.nav-menu {
+    position: absolute;
+    top: -300px;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    opacity: 0.6;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    transition: top 0.5s ease, opacity 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    visibility: hidden;
+    border: 5px solid rgba(0, 0, 0, 0);
+    clip-path: polygon(
+        0% 0%, 
+        95% 0%, 
+        100% 5%, 
+        100% 100%, 
+        5% 100%, 
+        0% 95%
+    );
+    text-align: right;
+    opacity: 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.01));
+}
+
+
+.navbar.active .nav-menu {
+    top: 100%; /* widoczne poniżej nagłówka */
+    opacity: 0.6;
+    visibility: visible;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.01));
+
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1100;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #777;
+    transition: all 0.3s ease;
+}
+
+/* animacja hamburgera */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-menu {
+    backdrop-filter: blur(50px);
+}
+
+
+/* section, div, span {
+  border: none;
+} */
+
+main {
+  height: 100%;
+  text-align: center;
+  margin: 8%;
+  padding: 5%;
+  margin-top: 13%;
+  padding-top: 13%;
+}
+
+main section {
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, #1a1a1a, #222);
+    color: var(--text-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+main div {
+    margin-top: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(64, 224, 208, 0.2);
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+main span {
+    display: block;
+    margin-top: 1rem;
+    color: var(--secondary-accent);
+    font-weight: 500;
+    font-style: italic;
+}
+
+
+
+
+
+    </style>
+
 </head>
-<body style="background: var(--bg-color); color: var(--text-color);">
+<body>
+    <!-- Header -->
     <header>
-        <nav class="navbar" aria-label="Główna nawigacja">
-            <a href="{% url 'index' %}" class="logo" aria-label="Strona główna">RavaDev</a>
-            <ul>
-                <li><a href="{% url 'service_list' %}">Usługi</a></li>
-                <li><a href="{% url 'finished_projects' %}">Portfolio</a></li>
-                <li><a href="{% url 'blog_index' %}">Blog</a></li>
-                <li><a href="{% url 'subscription_list' %}">Subskrypcje</a></li>
-                <li><a href="{% url 'contact:start_conversation' %}" class="btn">Kontakt</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'settings' %}">Moje konto</a></li>
-                    <li><a href="{% url 'logout' %}">Wyloguj</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Logowanie</a></li>
-                {% endif %}
-            </ul>
+        <nav class="navbar">
+            <div class="container">
+                <img src="logo.png" alt="RavaDev Logo" class="logo-img" style="width: 50px; height: 50px;">
+                <a href="#" class="logo">Rava<span>Dev</span></a>
+
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <section class="nav-menu">
+                    <div><a href="#services">Usługi</a></div>
+                    <div><a href="#subscriptions">Subskrypcje</a></div>
+                    <div><a href="#portfolio">Portfolio</a></div>
+                    <div><a href="#blog">Blog</a></div>
+                    <div><a href="#contact" class="btn btn-outline">Kontakt</a></div>
+                    {% if user.is_authenticated %}
+                        <div><a href="{% url 'settings' %}">Moje konto</a></div>
+                        <div><a href="">Wyloguj</a></div>
+                    {% else %}
+                        <div><a href="">Logowanie</a></div>
+                    {% endif %}
+                </ul>
+            </div>
         </nav>
-        {% block header %}{% endblock %}
+
+      
+        {% block header %}
+        {% endblock %}
+        
     </header>
+    <!-- Main Content -->
+
     <main>
         {% block content %}{% endblock %}
     </main>
-    <footer>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <h2 class="section-title">Nasze <span>Usługi</span></h2>
+            <p class="section-subtitle">Kompleksowe rozwiązania dla Twojego biznesu</p>
+            
+            <div class="services-grid">
+                {% for service in services %}
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-{{ service.icon }}"></i>
+                    </div>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description|truncatechars:120 }}</p>
+                    <a href="{% url 'service-detail' service.slug %}" class="btn btn-small">Dowiedz się więcej</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about">
+        <div class="container">
+            <div class="about-content">
+                <h2>Dlaczego <span>RavaDev?</span></h2>
+                <p>Jesteśmy zespołem doświadczonych specjalistów IT, którzy łączą techniczną wiedzę z biznesowym podejściem.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="150">0</span>
+                        <span class="stat-label">Zrealizowanych projektów</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="98">0</span>
+                        <span class="stat-label">Zadowolonych klientów</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="15">0</span>
+                        <span class="stat-label">Lat doświadczenia</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="{% static 'img/about-team.jpg' %}" alt="Zespół RavaDev">
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section portfolio">
+        <div class="container">
+            <h2 class="section-title">Nasze <span>Portfolio</span></h2>
+            <p class="section-subtitle">Zobacz przykłady naszych realizacji</p>
+            
+            <div class="portfolio-grid">
+                {% for project in featured_projects %}
+                <div class="portfolio-item">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    <div class="portfolio-overlay">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.category }}</p>
+                        <a href="{{ project.get_absolute_url }}" class="btn btn-small">Zobacz projekt</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscriptions Section -->
+    <section id="subscriptions" class="section subscriptions">
+        <div class="container">
+            <h2 class="section-title">Subskrypcje <span>Tacc Accountancy</span></h2>
+            <p class="section-subtitle">Kompleksowe rozwiązania księgowe dla Twojej firmy</p>
+            
+            <div class="pricing-grid">
+                {% for plan in subscription_plans %}
+                <div class="pricing-card {% if plan.is_featured %}featured{% endif %}">
+                    {% if plan.is_featured %}<div class="popular-badge">Popularny</div>{% endif %}
+                    <h3>{{ plan.name }}</h3>
+                    <div class="price">
+                        <span class="amount">{{ plan.price }}</span>
+                        <span class="period">/miesiąc</span>
+                    </div>
+                    <ul class="features">
+                        {% for feature in plan.features.all %}
+                        <li>{{ feature.description }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'subscription' plan.slug %}" class="btn {% if plan.is_featured %}btn-primary{% else %}btn-outline{% endif %}">Wybierz plan</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Opinie <span>Klientów</span></h2>
+            
+            <div class="testimonials-slider">
+                {% for testimonial in testimonials %}
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"{{ testimonial.content }}"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="{{ testimonial.author_photo.url }}" alt="{{ testimonial.author_name }}">
+                        <div>
+                            <h4>{{ testimonial.author_name }}</h4>
+                            <span>{{ testimonial.author_position }}, {{ testimonial.company }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section blog">
+        <div class="container">
+            <h2 class="section-title">Ostatnie <span>Wpisy</span></h2>
+            <p class="section-subtitle">Poznaj nasze porady i analizy</p>
+            
+            <div class="blog-grid">
+                {% for post in featured_posts %}
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                        <span class="blog-category">{{ post.category.name }}</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">{{ post.published_at|date:"d M Y" }}</span>
+                        <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                        <p>{{ post.excerpt }}</p>
+                        <a href="{{ post.get_absolute_url }}" class="read-more">Czytaj więcej <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Skontaktuj się z nami</h2>
+                <p>Masz pytania? Chętnie na nie odpowiemy!</p>
+                
+                <form method="post" class="contact-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Imię i nazwisko" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Adres e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Telefon">
+                    </div>
+                    <div class="form-group">
+                        <select name="service" required>
+                            <option value="" disabled selected>Wybierz usługę</option>
+                            <option value="outsourcing">Outsourcing IT</option>
+                            <option value="development">Tworzenie oprogramowania</option>
+                            <option value="erp">Integracja ERP/CRM/BI</option>
+                            <option value="other">Inne</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" placeholder="Twoja wiadomość..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Adres</h3>
+                    <p>ul. Technologiczna 15<br>00-001 Warszawa</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Telefon</h3>
+                    <p><a href="tel:+48123456789">+48 123 456 789</a></p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>E-mail</h3>
+                    <p><a href="mailto:kontakt@ravadev.pl">kontakt@ravadev.pl</a></p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Godziny otwarcia</h3>
+                    <p>Pon-Pt: 9:00-17:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="footer-content">
             <p>&copy; {{ year|default:2025 }} RavaDev. Wszelkie prawa zastrzeżone.</p>
             <ul class="social-links">
@@ -42,8 +1338,96 @@
                 <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
             </ul>
         </div>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Rava<span>Dev</span></h3>
+                    <p>Profesjonalne usługi IT dla Twojego biznesu. Z nami osiągniesz więcej w cyfrowym świecie.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Usługi</h3>
+                    <ul>
+                        <li><a href="#">Outsourcing IT</a></li>
+                        <li><a href="#">Tworzenie oprogramowania</a></li>
+                        <li><a href="#">Integracja systemów</a></li>
+                        <li><a href="#">Konsulting IT</a></li>
+                        <li><a href="#">Subskrypcje Tacc</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Linki</h3>
+                    <ul>
+                        <li><a href="#">O nas</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Kariera</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Zapisz się do naszego newslettera aby otrzymywać aktualności.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Twój e-mail" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RavaDev. Wszelkie prawa zastrzeżone.</p>
+                <div class="footer-links">
+                    <a href="#">Polityka prywatności</a>
+                    <a href="#">Warunki korzystania</a>
+                    <a href="#">Mapa strony</a>
+                </div>
+            </div>
+        </div>
     </footer>
+
     <script src="{% static 'js/main.js' %}"></script>
-    {% block scripts %}{% endblock %}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Animate stats
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-count'));
+            const increment = target / 100;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                stat.textContent = Math.floor(current);
+                
+                if (current >= target) {
+                    stat.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 20);
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburger = document.querySelector(".hamburger");
+            const navbar = document.querySelector(".navbar");
+
+            hamburger.addEventListener("click", function () {
+                hamburger.classList.toggle("active");
+                navbar.classList.toggle("active");
+            });
+        });
+
+
+    </script>
 </body>
 </html>
