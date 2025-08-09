@@ -81,6 +81,11 @@
         {% if post.comments.exists %}
             <ul>
                 {% for comment in post.comments.all %}
+                <span>
+                    <h5>{{ comment.author.username }}</h5>
+                    <h6>({{ comment.created|date:"F j, Y" }})</h6>
+                    <p>{{ comment.content }}</p>
+                </span>
                     <li>
                         <strong>{{ comment.author.username }}</strong> ({{ comment.created|date:"F j, Y" }}):
                         {{ comment.content }}

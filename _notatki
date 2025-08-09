@@ -1,3 +1,36 @@
+{% url 'register' %}
+{% url 'login' %}
+{% url 'logout' %}
+{% url 'settings' %}
+{% url 'subscription_list' %}
+{% url 'service_list' %}
+{% url 'team' %}
+{% url 'start' %}
+{% url 'blog_index' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <header>
         <nav class="navbar" aria-label="Główna nawigacja">
             <a href="{% url 'index' %}" class="logo" aria-label="Strona główna">RavaDev</a>
