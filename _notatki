@@ -1,0 +1,65 @@
+{% url 'register' %}
+{% url 'login' %}
+{% url 'logout' %}
+{% url 'settings' %}
+{% url 'subscription_list' %}
+{% url 'service_list' %}
+{% url 'team' %}
+{% url 'start' %}
+{% url 'blog_index' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+        <nav class="navbar" aria-label="Główna nawigacja">
+            <a href="{% url 'index' %}" class="logo" aria-label="Strona główna">RavaDev</a>
+            <ul>
+                <li><a href="">Usługi</a></li>
+                <li><a href="">Portfolio</a></li>
+                <li><a href="">Blog</a></li>
+                <li><a href="">Subskrypcje</a></li>
+                <li><a href="" class="btn">Kontakt</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'settings' %}">Moje konto</a></li>
+                    <li><a href="">Wyloguj</a></li>
+                {% else %}
+                    <li><a href="">Logowanie</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% block header %}{% endblock %}
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; {{ year|default:2025 }} RavaDev. Wszelkie prawa zastrzeżone.</p>
+            <ul class="social-links">
+                <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+            </ul>
+        </div>
+    </footer>

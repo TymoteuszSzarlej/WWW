@@ -1,5 +1,122 @@
 {% extends "blog/base_blog.html" %}
 
 {% block blog_content %}
+<style>
+    .post-image {
+        color: #666;
+        font-size: 0.6rem;
+        width: 40%;
+        height: 40%;
+    }
+</style>
 <!-- blog/post_detail.html content -->
+<h2>Wpis "<strong>{{ post.title }}</strong></h2>
+
+
+<table>
+    <tr>
+        <td>
+
+<section>
+    <h3>Informacje na temat wpisu</h3>
+    <div>
+        <h4>Kategoria</h4>
+        <p>{{ post.category.name }}</p>
+    </div>
+    <div>
+        <h4>Data utworzenia</h4>
+        <p>{{ post.created|date:"F j, Y" }}</p>
+    </div>
+    <div>
+        <h4>Data aktualizacji</h4>
+        <p>{{ post.updated|date:"F j, Y" }}</p>
+    </div>
+    <div>
+        <h4>Autor</h4>
+        <p>{{ post.author.username }}</p>
+    </div>
+    <div>
+        <h4>Liczba wyświetleń</h4>
+        <p>{{ post.view_count }}</p>
+    </div>
+</section>
+
+        </td>
+        <td>
+
+<section>
+        <h4>Obraz</h4>
+        {% if post.image %}
+            <div>
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%; height: auto;" class="post-image">
+            </div>
+        {% else %}
+            <p>Brak obrazu</p>
+        {% endif %}
+</section>
+
+        </td>
+    </tr>
+    <tr>
+<td>
+
+    <section>
+    <h3>Treść wpisu</h3>
+    <div>
+        <h4>
+            {{ post.title}}
+        </h4>
+        <p>{{ post.content }}</p>
+    </div>
+</section>
+
+</td>
+    </tr>
+    <tr>
+        <td>
+<section>
+    <h3>Recenzja</h3>
+    <div>
+        <h4>Komentarze</h4>
+        {% if post.comments.exists %}
+            <ul>
+                {% for comment in post.comments.all %}
+                <span>
+                    <h5>{{ comment.author.username }}</h5>
+                    <h6>({{ comment.created|date:"F j, Y" }})</h6>
+                    <p>{{ comment.content }}</p>
+                </span>
+                    <li>
+                        <strong>{{ comment.author.username }}</strong> ({{ comment.created|date:"F j, Y" }}):
+                        {{ comment.content }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Brak komentarzy.</p>
+        {% endif %}
+        </td>
+        <td>
+            <div>
+                <h4>Dodaj komentarz</h4>
+                <form method="post" action="{% url 'add_comment' post.id %}">
+                    {% csrf_token %}
+                    <textarea name="content" rows="4" required></textarea>
+                    <button type="submit">Dodaj komentarz</button>
+                </form>
+            </div>
+        </td>
+        <td>
+            <div>
+                <h4>Dodaj recenzję</h4>
+                <form method="post" action="{% url 'add_review' post.id %}">
+                    {% csrf_token %}
+                    <textarea name="content" rows="4" required></textarea>
+                    <button type="submit">Dodaj recenzję</button>
+                </form>
+            </div>
+        </td>
+    </tr>
+</table>
+
 {% endblock %}

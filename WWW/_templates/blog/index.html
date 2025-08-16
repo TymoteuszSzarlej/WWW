@@ -1,5 +1,44 @@
 {% extends "blog/base_blog.html" %}
 
 {% block blog_content %}
+<style>
+    .post-date {
+        color: #666;
+        font-size: 0.6rem;
+    }
+</style>
 <!-- blog/index.html content -->
+<h2>Strona główna bloga</h2>
+<section>
+    <h3>Ostatnie wpisy</h3>
+    {% for post in latest_posts %}
+    <div>
+        <h4>{{ post.title }}</h4>
+        <p class="post-date">{{ post.created|date:"F j, Y" }}</p>
+        <p>{{ post.content|slice:":64" }}...</p>
+        <a href="{% url 'post_detail' post.id %}">Czytaj więcej</a>
+    </div>
+    {% endfor %}
+</section>
+<section>
+    <h3>Kategorie</h3>
+    {% for category in categories %}
+    <div>
+        <h4>{{ category.name }}</h4>
+        <p>{{ category.description }}</p>
+        <a href="{% url 'category_posts' category.id %}">Zobacz wpisy</a>
+    </div>
+    {% endfor %}
+</section>
+<section>
+    <h3>Popularne wpisy</h3>
+    {% for post in popular_posts %}
+    <div>
+        <h4>{{ post.title }}</h4>
+        <p class="post-date">{{ post.created|date:"F j, Y" }}</p>
+        <p>{{ post.content|slice:":64" }}...</p>
+        <a href="{% url 'post_detail' post.id %}">Czytaj więcej</a>
+    </div>
+    {% endfor %}
+</section>
 {% endblock %}

@@ -2,4 +2,10 @@
 
 {% block blog_content %}
 <!-- blog/add_comment.html content -->
+<h2>Dodaj komentarz</h2>
+<form method="post" action="{% url 'add_comment' post.id %}">
+    {% csrf_token %}
+    <textarea name="content" rows="4" required></textarea>
+    <button type="submit">Dodaj komentarz</button> 
+</form>
 {% endblock %}
